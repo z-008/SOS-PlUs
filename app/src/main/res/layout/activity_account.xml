@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.apple.sos.Register">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="100dp"
+        android:background="@drawable/asd"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+
+        <Button
+            android:id="@+id/SendSOS"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/buttonstyleselector"
+            android:text="Send SOS"
+            android:textAllCaps="false"
+
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/ReceiveSOS"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/buttonstyleselector"
+            android:text="Receive"
+            android:textAllCaps="false"
+
+            android:textColor="#fff" />
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
