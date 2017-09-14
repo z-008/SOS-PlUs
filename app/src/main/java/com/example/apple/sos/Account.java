@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Account extends AppCompatActivity {
+public class Account extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
+    private Button SendSOS;
 
 
     @Override
@@ -42,8 +45,19 @@ public class Account extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
-
+        SendSOS = (Button)findViewById(R.id.SendSOS);
         firebaseAuth = FirebaseAuth.getInstance();
 
+        SendSOS.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view==SendSOS)
+        {
+            finish();
+            startActivity(new Intent(Account.this, MapsActivity.class));
+        }
     }
 }
