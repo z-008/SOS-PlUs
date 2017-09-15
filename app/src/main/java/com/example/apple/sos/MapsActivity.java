@@ -25,6 +25,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,6 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private LocationManager locationManager;
     private LocationListener locationListener;
+    private DatabaseReference databaseReference;
 
 
     @Override
@@ -56,6 +61,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Login.firebaseauth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -82,7 +90,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng yourLocation = new LatLng(18.606855,73.87518);
         mMap.clear();
         mMap.addMarker(new MarkerOptions().position(yourLocation).title("Your Location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation,10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation,18));
+
+        Locatn locate = new Locatn("18.606855","73.87518","Sender");
+        FirebaseUser firebaseUser =Login.firebaseauth.getCurrentUser();
+        databaseReference.child(firebaseUser.getUid()).child("LocationInfo").setValue(locate);
+
+
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -94,7 +108,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng yourLocation = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(yourLocation).title("Your Location"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation,10));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation,18));
+
+
+                Locatn locate = new Locatn(String.valueOf(yourLocation.latitude),String.valueOf(yourLocation.longitude),"Sender");
+                FirebaseUser firebaseUser =Login.firebaseauth.getCurrentUser();
+                databaseReference.child(firebaseUser.getUid()).child("LocationInfo").setValue(locate);
+
+
+
             }
 
             @Override

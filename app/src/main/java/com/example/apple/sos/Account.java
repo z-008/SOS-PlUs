@@ -10,11 +10,17 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Account extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
     private Button SendSOS;
+    private Button RecSOS;
+
+
 
 
     @Override
@@ -46,9 +52,11 @@ public class Account extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         SendSOS = (Button)findViewById(R.id.SendSOS);
+        RecSOS = (Button)findViewById(R.id.ReceiveSOS);
         firebaseAuth = FirebaseAuth.getInstance();
 
         SendSOS.setOnClickListener(this);
+        RecSOS.setOnClickListener(this);
 
     }
 
@@ -56,8 +64,18 @@ public class Account extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view) {
         if(view==SendSOS)
         {
+            //firebaseUser= firebaseAuth.getCurrentUser();
+           // databaseReference.child(firebaseUser.getUid()).setValue("Sender");
             finish();
             startActivity(new Intent(Account.this, MapsActivity.class));
         }
+        if(view==RecSOS)
+        {
+           // firebaseUser= firebaseAuth.getCurrentUser();
+           // databaseReference.child(firebaseUser.getUid()).setValue("Receiver");
+            finish();
+            startActivity(new Intent(Account.this, MapsActivityR.class));
+        }
+
     }
 }
