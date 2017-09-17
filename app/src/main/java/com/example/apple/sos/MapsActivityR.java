@@ -8,6 +8,7 @@ package com.example.apple.sos;
         import android.location.Location;
         import android.location.LocationListener;
         import android.location.LocationManager;
+        import android.net.Uri;
         import android.os.Build;
         import android.provider.Settings;
         import android.support.annotation.NonNull;
@@ -46,8 +47,8 @@ public class MapsActivityR extends FragmentActivity implements OnMapReadyCallbac
     private LocationManager locationManager;
     private LocationListener locationListener;
     private DatabaseReference databaseReference,rootRef;
-    private Locatn sloc;
     private LatLng recLocation;
+    Intent intent;
 
 
     @Override
@@ -103,7 +104,7 @@ public class MapsActivityR extends FragmentActivity implements OnMapReadyCallbac
             @Override
             public void onDataChange(DataSnapshot snapshot) {
               //  for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    Locatn sloc = snapshot.getValue(Locatn.class);
+                 Locatn sloc = snapshot.getValue(Locatn.class);
 
 
                      recLocation = new LatLng(Double.parseDouble(sloc.getLat()),Double.parseDouble(sloc.getLont()));
@@ -157,6 +158,15 @@ public class MapsActivityR extends FragmentActivity implements OnMapReadyCallbac
                Locatn locate = new Locatn(String.valueOf(yourLocation.latitude),String.valueOf(yourLocation.longitude),"Receiver");
                 FirebaseUser firebaseUser =Login.firebaseauth.getCurrentUser();
                 databaseReference.child(firebaseUser.getUid()).child("LocationInfo").setValue(locate);
+
+
+                Intent directionsIntent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?saddr=" + yourLocation.latitude + "," + yourLocation.longitude + "&daddr=" + recLocation.latitude + "," + recLocation.longitude));
+                startActivity(directionsIntent);
+
+
+
+
 
 
 
