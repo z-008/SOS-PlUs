@@ -46,7 +46,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
 
         if(firebaseauth.getCurrentUser()!=null)
-        {  finish();
+        { // finish();
             startActivity(new Intent(getApplicationContext(),Account.class));
         }
 
@@ -104,11 +104,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                             //User is registered successfully
                            UserInfo userInfo =new UserInfo(name,email,uid);
                             FirebaseUser firebaseUser =firebaseauth.getCurrentUser();
-                            databaseReference.child(firebaseUser.getUid()).child("UserInfo").setValue(userInfo); //Saving Info
+                            databaseReference.child("UserInfo").child(firebaseUser.getUid()).setValue(userInfo); //Saving Info
 
 
                             Toast.makeText(Register.this, "User registered successfully!!", Toast.LENGTH_SHORT).show();
-                            finish();
+                            //finish();
                             startActivity(new Intent(getApplicationContext(),Account.class));
                         }
                         else
@@ -132,7 +132,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
       if(view==textViewlogin)
      {
-         finish();
+       //  finish();
          startActivity(new Intent(Register.this,Login.class));
      }
     }

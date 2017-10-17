@@ -8,17 +8,15 @@ public class Locatn {
 
     String lat;
     String lont;
-    String actingas;
 
     public Locatn()
     {
 
     }
 
-    public Locatn(String lat, String lont,String actingas) {
+    public Locatn(String lat, String lont) {
         this.lat = lat;
         this.lont = lont;
-        this.actingas = actingas;
     }
 
     public String getLat() {
@@ -37,11 +35,5 @@ public class Locatn {
         this.lont = lont;
     }
 
-    public String getactingas() {
-        return actingas;
-    }
 
-    public void setActingas(String actingas) {
-        actingas = actingas;
-    }
 }

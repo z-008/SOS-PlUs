@@ -92,9 +92,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(yourLocation).title("Your Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation,18));
 
-        Locatn locate = new Locatn("18.606855","73.87518","Sender");
+        Locatn locate = new Locatn("18.606855","73.87518");
         FirebaseUser firebaseUser =Login.firebaseauth.getCurrentUser();
-        databaseReference.child(firebaseUser.getUid()).child("LocationInfo").setValue(locate);
+        databaseReference.child("LocationInfo").child(firebaseUser.getUid()).setValue(locate);
 
 
 
@@ -111,9 +111,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(yourLocation,18));
 
 
-                Locatn locate = new Locatn(String.valueOf(yourLocation.latitude),String.valueOf(yourLocation.longitude),"Sender");
+                Locatn locate = new Locatn(String.valueOf(yourLocation.latitude),String.valueOf(yourLocation.longitude));
                 FirebaseUser firebaseUser =Login.firebaseauth.getCurrentUser();
-                databaseReference.child(firebaseUser.getUid()).child("LocationInfo").setValue(locate);
+                databaseReference.child("LocationInfo").child(firebaseUser.getUid()).setValue(locate);
 
 
 

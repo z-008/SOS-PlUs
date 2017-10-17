@@ -38,7 +38,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener{
       if(item.getItemId()==R.id.logout);
       {
           firebaseAuth.signOut();
-          finish();
+         // finish();
           startActivity(new Intent(getApplicationContext(),Register.class));
       }
 
@@ -66,14 +66,14 @@ public class Account extends AppCompatActivity implements View.OnClickListener{
         {
             //firebaseUser= firebaseAuth.getCurrentUser();
            // databaseReference.child(firebaseUser.getUid()).setValue("Sender");
-            finish();
+           // finish();
             startActivity(new Intent(Account.this, MapsActivity.class));
         }
         if(view==RecSOS)
         {
            // firebaseUser= firebaseAuth.getCurrentUser();
            // databaseReference.child(firebaseUser.getUid()).setValue("Receiver");
-            finish();
+           // finish();
             startActivity(new Intent(Account.this, MapsActivityR.class));
         }
 

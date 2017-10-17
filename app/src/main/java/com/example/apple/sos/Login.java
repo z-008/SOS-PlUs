@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
 
         if(firebaseauth.getCurrentUser()!=null)
-        {  finish();
+        {  //finish();
            startActivity(new Intent(getApplicationContext(),Account.class));
         }
 
@@ -91,7 +91,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         {
                             //User is registered successfully
                             Toast.makeText(Login.this, "User logged in successfully!!", Toast.LENGTH_SHORT).show();
-                            finish();
+                           // finish();
                             startActivity(new Intent(Login.this, Account.class));
                         }
 
